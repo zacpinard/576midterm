@@ -22,7 +22,7 @@
     <script src="https://js.arcgis.com/4.26/"></script>
 
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate"], (esriConfig, Map, MapView, Locate) => {
+        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search"], (esriConfig, Map, MapView, Locate, Search) => {
 
             //adding in API Key
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
@@ -44,7 +44,19 @@
 
             // Add the locate widget to the top left corner of the view
             view.ui.add(locateBtn, {
-                position: "top-left"
+                position: "top-left",
+                index: 1
+            });
+
+            const searchWidget = new Search({
+                view: view
+            });
+
+            // Adds the search widget below other elements in
+            // the top left corner of the view
+            view.ui.add(searchWidget, {
+                position: "top-left",
+                index: 0
             });
 
 
