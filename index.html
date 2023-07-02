@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-    <title>Data Collector for AGOL</title>
+    <title>Chaga Forager - Wisconsin</title>
 
     <style>
         html,
@@ -17,23 +17,33 @@
         }
 
         .addRecordBtn {
-            position: absolute;
-            z-index: 10;
-            top: 10px;
+            position: fixed;
+            left: 10px;
             right: 10px;
-            background-color: #0079c1;
-            color: white;
+            text-align: center;
+            z-index: 10;
+            bottom: 25px;
+            background-color: black;
+            color: #F9812A;
             padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
+            outline-style: solid;
+            outline-color: #F9812A;
+            outline-width: 4px;
+            font-size: 30px;
             cursor: pointer;
             text-decoration: none;
         }
 
         .addRecordBtn:hover {
-            background-color: #005a87;
+            background-color: #964000;
         }
+
+        .searchWidget {
+            position: fixed;
+            left: 10px;
+            right: 10px;
+        }
+
       </style>
 
     <!-- importing css and libraries for esri.js -->
@@ -47,7 +57,7 @@
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
             
             const map = new Map({
-                basemap: "gray-vector"
+                basemap: "satellite"
             });
 
             const view = new MapView({
@@ -63,13 +73,13 @@
 
 
             // Create featurelayer from feature service 
-            const layer = new FeatureLayer({ 
+            const sightingslayer = new FeatureLayer({ 
                 // URL to the service 
-                url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_1d8c3b1638fa4a4f8852e03823ecf770_results/FeatureServer"  //Your item URL Goes Here
+                url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_10b3abf4829f450c9eb1829eb281c7ee_results/FeatureServer"  //Your item URL Goes Here
             });
 
             //Add layer to map
-            map.add(layer);
+            map.add(sightingslayer);
 
             // Add the locate widget to the top left corner of the view
             view.ui.add(locateBtn, {
@@ -88,7 +98,7 @@
                 index: 0
             });
 
-
+            //I'm having trouble altering the CSS of the search widget, chaga sightings layer, locate button, and zoom buttons.  I want them to match the orange and black chaga theme.
 
          });
       </script>
@@ -96,7 +106,7 @@
   </head>
   <body>
    
-    <a href="https://arcg.is/14KOj80"target="_blank" class="addRecordBtn">Add Record</a>
+    <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
     
     <div id="viewDiv"></div>
 
