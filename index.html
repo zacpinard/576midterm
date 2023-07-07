@@ -38,10 +38,24 @@
             background-color: #964000;
         }
 
-        .searchWidget {
-            position: fixed;
-            left: 10px;
-            right: 10px;
+        .esri-search {
+            background-color: black; 
+            color: #F9812A; 
+        }
+        
+        .esri-locate {
+            background-color: black; 
+            color: #F9812A;
+        }
+        
+        .esri-zoom {
+            background-color: black;
+            color: #F9812A;
+        }
+        
+        .esri-feature-layer {
+            stroke: #F9812A;
+            fill: black;
         }
 
       </style>
@@ -49,6 +63,8 @@
     <!-- importing css and libraries for esri.js -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.26/"></script>
+
+
 
     <script>
         require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search","esri/layers/FeatureLayer"], (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
