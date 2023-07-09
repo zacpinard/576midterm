@@ -156,7 +156,12 @@
 
             const chagaPopup = {
                 "title": "Chaga Sighting",
-                "content": "<b>Forager:</b> {who_saw_the_chaga}<br><b>Sighting:</b> {what_date_was_the_sighting}<br><b>Harvested?:</b> {was_the_chaga_harvested}<br><b>Other Info:</b> {comment_optional}<br>"
+                "content": [{
+                    type: "text",
+                    text: "<b>Forager:</b> {who_saw_the_chaga}<br><b>Sighting:</b> {what_date_was_the_sighting}<br><b>Harvested?:</b> {was_the_chaga_harvested}<br><b>Other Info:</b> {comment_optional}<br><b>Photo:</b> {Photos and Files}<br>"
+                }, {
+                    type: "attachments"
+                }]
             }
 
             // Create featurelayer from feature service 
@@ -165,7 +170,7 @@
                 url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_10b3abf4829f450c9eb1829eb281c7ee_results/FeatureServer",  //Your item URL Goes Here
                 renderer: chagaRenderer,
                 //adding popup
-                outFields: ["who_saw_the_chaga","what_date_was_the_sighting","was_the_chaga_harvested","comment_optional"],
+                outFields: ["who_saw_the_chaga","what_date_was_the_sighting","was_the_chaga_harvested","comment_optional","Photos and Files"],
                 popupTemplate: chagaPopup,
                 dockOptions: false
             });
@@ -221,18 +226,6 @@
                 breakpoint: false,
             }
 
-            /*
-            view.pop.on("show", lang.hitch(this, function(){
-              require(['dojo/query'], function(query) {
-                //Maximize popup
-                html.setStyle(query(".esriPopupMobile")[0], "display", "none");
-                html.setStyle(query(".esriMobileNavigationBar")[0], "display", "block");
-                html.setStyle(query(".esriMobileInfoView.esriMobilePopupInfoView")[0], "display", "block");
-              })}
-            ))
-*/
-            //I'm having trouble altering the CSS of the search widget, chaga sightings layer, locate button, and zoom buttons.  I want them to match the orange and black chaga theme.
-
          });
       </script>
       
@@ -243,6 +236,9 @@
     <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
     
     <div id="viewDiv"></div>
+
+    <!--put your external script links here-->
+    <!--<script type="text/javascript" src="lib/MapManager.js"></script>-->
 
   </body>
 </html>
