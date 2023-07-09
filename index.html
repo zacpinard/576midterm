@@ -66,20 +66,44 @@
             outline-width: 2px;
         }
 
-        .esri-zoom {
-            /* visibility: hidden; */
-            background-color: black; /* doesn't work */
-            color: #F9812A; /* doesn't work */
-        }
-
         .esri-widget--button {
-            background-color: black
+            background-color: black;
+            color: #F9812A;
+            width: 40;
+            height: 50;
         }
         
+        .esri-widget--button:hover {
+            background-color: black;
+            color: #F9812A;
+        }
+
         .esri-feature-layer {
             stroke: #F9812A;
             fill: black;
         }
+
+        .esri-view-width-xsmall .esri-popup--is-docked-bottom-center .esri-popup__main-container {
+            width: 100%;
+            max-height: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .esri-popup__main-container {
+            pointer-events: auto;
+            position: relative;
+            z-index: 1;
+            width: 340px;
+            max-height: 840px;
+            background-color: #fff;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+
 
     </style>
 
@@ -93,10 +117,11 @@
             "esri/views/MapView",
             "esri/widgets/Locate",
             "esri/widgets/Search",
-            "esri/layers/FeatureLayer"
+            "esri/layers/FeatureLayer",
+            "esri/widgets/Popup"
         ],
         
-        (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
+        (esriConfig, Map, MapView, Locate, Search, FeatureLayer, Popup) => {
 
             //adding in API Key
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
@@ -141,7 +166,8 @@
                 renderer: chagaRenderer,
                 //adding popup
                 outFields: ["who_saw_the_chaga","what_date_was_the_sighting","was_the_chaga_harvested","comment_optional"],
-                popupTemplate: chagaPopup
+                popupTemplate: chagaPopup,
+                dockOptions: false
             });
 
             //Add layer to map
@@ -184,6 +210,27 @@
                 index: 0
             });
 
+            view.on("click", function(event) {
+                view.popup.open({
+                    // Set the popup
+                });
+                view.popup.visible = true
+            });
+
+            view.popup.dockOptions = {
+                breakpoint: false,
+            }
+
+            /*
+            view.pop.on("show", lang.hitch(this, function(){
+              require(['dojo/query'], function(query) {
+                //Maximize popup
+                html.setStyle(query(".esriPopupMobile")[0], "display", "none");
+                html.setStyle(query(".esriMobileNavigationBar")[0], "display", "block");
+                html.setStyle(query(".esriMobileInfoView.esriMobilePopupInfoView")[0], "display", "block");
+              })}
+            ))
+*/
             //I'm having trouble altering the CSS of the search widget, chaga sightings layer, locate button, and zoom buttons.  I want them to match the orange and black chaga theme.
 
          });
