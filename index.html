@@ -60,6 +60,7 @@
         .esri-locate {
             background-color: black; 
             color: #F9812A;
+            size: 10;
             outline-style: solid;
             outline-color: #F9812A;
             outline-width: 2px;
@@ -86,7 +87,16 @@
 
 
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search","esri/layers/FeatureLayer"], (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
+        require([
+            "esri/config", 
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/widgets/Locate",
+            "esri/widgets/Search",
+            "esri/layers/FeatureLayer"
+        ],
+        
+        (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
 
             //adding in API Key
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
@@ -119,11 +129,19 @@
                 }
             }
 
+            const chagaPopup = {
+                "title": "Chaga Sighting",
+                "content": "<b>Forager:</b> {who_saw_the_chaga}<br><b>Sighting:</b> {what_date_was_the_sighting}<br><b>Harvested?:</b> {was_the_chaga_harvested}<br><b>Other Info:</b> {comment_optional}<br>"
+            }
+
             // Create featurelayer from feature service 
             const sightingslayer = new FeatureLayer({ 
                 // URL to the service 
                 url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_10b3abf4829f450c9eb1829eb281c7ee_results/FeatureServer",  //Your item URL Goes Here
-                renderer: chagaRenderer
+                renderer: chagaRenderer,
+                //adding popup
+                outFields: ["who_saw_the_chaga","what_date_was_the_sighting","was_the_chaga_harvested","comment_optional"],
+                popupTemplate: chagaPopup
             });
 
             //Add layer to map
