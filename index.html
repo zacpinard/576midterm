@@ -93,10 +93,11 @@
             "esri/widgets/Locate",
             "esri/widgets/Search",
             "esri/layers/FeatureLayer",
-            "esri/widgets/Popup"
+            "esri/widgets/Popup",
+            "esri/symbols/P"
         ],
         
-        (esriConfig, Map, MapView, Locate, Search, FeatureLayer, Popup) => {
+        (esriConfig, Map, MapView, Locate, Search, FeatureLayer, Popup, PictureMarkerSymbol) => {
 
             //adding in API Key
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
@@ -116,17 +117,15 @@
                 view: view
             });
 
+            const chagaSymbol = new PictureMarkerSymbol({
+                url: "https://raw.githubusercontent.com/dski97/576midterm_peerreview/main/mushroom.png",  // URL of your image
+                width: "48px",
+                height: "48px"
+            });
+
             const chagaRenderer = {
                 type: "simple",
-                symbol: {
-                    type: "simple-marker",
-                    size: 10,
-                    color: "#F9812A",
-                    outline: {
-                        color: "white",
-                        width: 1
-                    }
-                }
+                symbol: chagaSymbol
             }
 
             const chagaPopup = {
