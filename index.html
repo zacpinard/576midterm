@@ -136,7 +136,8 @@
                     text: "<b>Forager:</b> {who_saw_the_chaga}<br><b>Sighting:</b> {what_date_was_the_sighting}<br><b>Harvested?:</b> {was_the_chaga_harvested}<br><b>Other Info:</b> {comment_optional}<br><b>Photo:</b> {Photos and Files}<br>"
                 }, {
                     type: "attachments"
-                }]
+                }],
+                "collapseEnabled": false  // add this line
             }
 
             // Create featurelayer from feature service 
@@ -210,6 +211,20 @@
    
     <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
     
+    <style>
+        h1 {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-size: 48px;
+          font-weight: bold;
+          color: #8B4513;
+          text-shadow: 2px 2px 2px #DAA520;
+          text-align: center;
+          margin-top: 2px ;
+        }
+      </style>
+      
+    <h1>Chaga Forager</h1>
+
     <div id="viewDiv"></div>
 
     <!--put your external script links here-->
