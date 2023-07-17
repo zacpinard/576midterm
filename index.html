@@ -95,10 +95,9 @@
             "esri/layers/FeatureLayer",
             "esri/widgets/Popup",
             "esri/symbols/PictureMarkerSymbol",
-            "esri/layers/support/LabelClass",
         ],
         
-        (esriConfig, Map, MapView, Locate, Search, FeatureLayer, Popup, PictureMarkerSymbol, LabelClass) => {
+        (esriConfig, Map, MapView, Locate, Search, FeatureLayer, Popup, PictureMarkerSymbol) => {
 
             //adding in API Key
             esriConfig.apiKey = "AAPKe7597e6aab984f1bb6af80415165d730xY1x15EKarGp3fwbIM7mnMtXYuu_jijQB4r1dPHGf-bIJeS4coIuA1Lfb_eHZrm5"
@@ -118,15 +117,17 @@
                 view: view
             });
 
-            const chagaSymbol = new PictureMarkerSymbol({
-                url: "https://raw.githubusercontent.com/dski97/576midterm_peerreview/main/mushroom.png",  // URL of your image
-                width: "48px",
-                height: "48px"
-            });
-
             const chagaRenderer = {
                 type: "simple",
-                symbol: chagaSymbol
+                symbol: {
+                    type: "simple-marker",
+                    size: 10,
+                    color: "#F9812A",
+                    outline: {
+                        color: "white",
+                        width: 1
+                    }
+                }
             }
 
             const chagaPopup = {
@@ -139,21 +140,6 @@
                 }],
                 "collapseEnabled": false  // add this line
             }
-
-            const labelClass = new LabelClass({
-            labelExpressionInfo: { expression: "'Wisconsin'" },
-            symbol: {
-                type: "text",
-                color: "black",
-                haloColor: "white",
-                haloSize: "2px",
-                font: {
-                    size: 14,
-                    family: "arial"
-                }
-            },
-            labelPlacement: "center"
-            });
 
             // Create featurelayer from feature service 
             const sightingslayer = new FeatureLayer({ 
@@ -186,7 +172,6 @@
                 // URL to the service 
                 url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Wisconsin_Border_Layer/FeatureServer",  //WI Borders item URL Goes Here
                 renderer: WIBorderRenderer,
-                labelingInfo: [labelClass]
             });
 
             //Add border layer to map
@@ -228,20 +213,6 @@
   <body>
    
     <a href="https://arcg.is/4HSb9"target="_blank" class="addRecordBtn">Add Chaga Sighting</a>
-
-    <style>
-        h1 {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          font-size: 48px;
-          font-weight: bold;
-          color: #8B4513;
-          text-shadow: 2px 2px 2px #DAA520;
-          text-align: center;
-          margin-top: 2px ;
-        }
-      </style>
-      
-    <h1>Chaga Foraging in Wisconsin</h1>
     
     <style>
         h1 {
